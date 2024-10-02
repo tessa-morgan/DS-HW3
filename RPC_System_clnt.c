@@ -3,7 +3,7 @@
  * It was generated using rpcgen.
  */
 
-#include <memory.h>
+#include <memory.h> /* for memset */
 #include "RPC_System.h"
 
 /* Default timeout can be changed using clnt_control() */
@@ -15,8 +15,12 @@ append_1(ordered *argp, CLIENT *clnt)
 	static char clnt_res;
 
 	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call(clnt, APPEND, xdr_ordered, argp, xdr_void, &clnt_res, TIMEOUT) != RPC_SUCCESS)
+	if (clnt_call (clnt, APPEND,
+		(xdrproc_t) xdr_ordered, (caddr_t) argp,
+		(xdrproc_t) xdr_void, (caddr_t) &clnt_res,
+		TIMEOUT) != RPC_SUCCESS) {
 		return (NULL);
+	}
 	return ((void *)&clnt_res);
 }
 
@@ -26,8 +30,12 @@ query_1(int *argp, CLIENT *clnt)
 	static int clnt_res;
 
 	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call(clnt, QUERY, xdr_int, argp, xdr_int, &clnt_res, TIMEOUT) != RPC_SUCCESS)
+	if (clnt_call (clnt, QUERY,
+		(xdrproc_t) xdr_int, (caddr_t) argp,
+		(xdrproc_t) xdr_int, (caddr_t) &clnt_res,
+		TIMEOUT) != RPC_SUCCESS) {
 		return (NULL);
+	}
 	return (&clnt_res);
 }
 
@@ -37,7 +45,11 @@ remove_1(int *argp, CLIENT *clnt)
 	static char clnt_res;
 
 	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call(clnt, REMOVE, xdr_int, argp, xdr_void, &clnt_res, TIMEOUT) != RPC_SUCCESS)
+	if (clnt_call (clnt, REMOVE,
+		(xdrproc_t) xdr_int, (caddr_t) argp,
+		(xdrproc_t) xdr_void, (caddr_t) &clnt_res,
+		TIMEOUT) != RPC_SUCCESS) {
 		return (NULL);
+	}
 	return ((void *)&clnt_res);
 }

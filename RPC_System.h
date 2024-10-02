@@ -6,59 +6,59 @@
 #ifndef _RPC_SYSTEM_H_RPCGEN
 #define _RPC_SYSTEM_H_RPCGEN
 
-#define RPCGEN_VERSION	199506
-
 #include <rpc/rpc.h>
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 
 typedef struct {
 	u_int ordered_len;
 	int *ordered_val;
 } ordered;
-#ifdef __cplusplus
-extern "C" bool_t xdr_ordered(XDR *, ordered*);
-#elif __STDC__
-extern  bool_t xdr_ordered(XDR *, ordered*);
-#else /* Old Style C */
-bool_t xdr_ordered();
-#endif /* Old Style C */
 
+#define RPC_SYSTEM_PROGRAM 0x20000001
+#define RPC_SYSTEM_VERS 1
 
-#define RPC_SYSTEM_PROGRAM ((rpc_uint)0x31234567)
-#define RPC_SYSTEM_VERS ((rpc_uint)1)
-
-#ifdef __cplusplus
-#define APPEND ((rpc_uint)1)
-extern "C" void * append_1(ordered *, CLIENT *);
-extern "C" void * append_1_svc(ordered *, struct svc_req *);
-#define QUERY ((rpc_uint)2)
-extern "C" int * query_1(int *, CLIENT *);
-extern "C" int * query_1_svc(int *, struct svc_req *);
-#define REMOVE ((rpc_uint)3)
-extern "C" void * remove_1(int *, CLIENT *);
-extern "C" void * remove_1_svc(int *, struct svc_req *);
-
-#elif __STDC__
-#define APPEND ((rpc_uint)1)
+#if defined(__STDC__) || defined(__cplusplus)
+#define APPEND 1
 extern  void * append_1(ordered *, CLIENT *);
 extern  void * append_1_svc(ordered *, struct svc_req *);
-#define QUERY ((rpc_uint)2)
+#define QUERY 2
 extern  int * query_1(int *, CLIENT *);
 extern  int * query_1_svc(int *, struct svc_req *);
-#define REMOVE ((rpc_uint)3)
+#define REMOVE 3
 extern  void * remove_1(int *, CLIENT *);
 extern  void * remove_1_svc(int *, struct svc_req *);
+extern int rpc_system_program_1_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
 
-#else /* Old Style C */
-#define APPEND ((rpc_uint)1)
+#else /* K&R C */
+#define APPEND 1
 extern  void * append_1();
 extern  void * append_1_svc();
-#define QUERY ((rpc_uint)2)
+#define QUERY 2
 extern  int * query_1();
 extern  int * query_1_svc();
-#define REMOVE ((rpc_uint)3)
+#define REMOVE 3
 extern  void * remove_1();
 extern  void * remove_1_svc();
-#endif /* Old Style C */
+extern int rpc_system_program_1_freeresult ();
+#endif /* K&R C */
+
+/* the xdr functions */
+
+#if defined(__STDC__) || defined(__cplusplus)
+extern  bool_t xdr_ordered (XDR *, ordered*);
+
+#else /* K&R C */
+extern bool_t xdr_ordered ();
+
+#endif /* K&R C */
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_RPC_SYSTEM_H_RPCGEN */

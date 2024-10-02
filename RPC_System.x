@@ -6,4 +6,4 @@ program RPC_SYSTEM_PROGRAM {
         int QUERY(int) = 2;
         void REMOVE(int) = 3;
     } = 1;
-} = 0x31234567;
+} = 0x20000001;

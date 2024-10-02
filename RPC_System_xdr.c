@@ -6,10 +6,12 @@
 #include "RPC_System.h"
 
 bool_t
-xdr_ordered(XDR *xdrs, ordered *objp)
+xdr_ordered (XDR *xdrs, ordered *objp)
 {
+	register int32_t *buf;
 
-	if (!xdr_array(xdrs, (char **)&objp->ordered_val, (u_int *)&objp->ordered_len, ~0, sizeof(int), (xdrproc_t)xdr_int))
-		return (FALSE);
-	return (TRUE);
+	 if (!xdr_array (xdrs, (char **)&objp->ordered_val, (u_int *) &objp->ordered_len, ~0,
+		sizeof (int), (xdrproc_t) xdr_int))
+		 return FALSE;
+	return TRUE;
 }

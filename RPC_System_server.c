@@ -6,39 +6,32 @@
 
 #include "RPC_System.h"
 
-void * append_1_svc(ordered *argp, struct svc_req *rqstp)
+void *
+append_1_svc(ordered *argp, struct svc_req *rqstp)
 {
-
-	static char* result;
+	static char * result;
 
 	printf("Append recieved");
-	
 
-	return((void*) &result);
+	return (void *) &result;
 }
 
-int * query_1_svc(int *argp, struct svc_req *rqstp)
+int *
+query_1_svc(int *argp, struct svc_req *rqstp)
 {
-
 	static int  result;
 
-	/*
-	 * insert server code here
-	 */
 	printf("query recieved for index %d", *argp);
 
-	return(&result);
+	return &result;
 }
 
-void * remove_1_svc(int *argp, struct svc_req *rqstp)
+void *
+remove_1_svc(int *argp, struct svc_req *rqstp)
 {
+	static char * result;
 
-	static char* result;
-
-	/*
-	 * insert server code here
-	 */
 	printf("remove recieved for index %d", *argp);
 
-	return((void*) &result);
+	return (void *) &result;
 }
