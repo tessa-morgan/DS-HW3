@@ -25,6 +25,7 @@ rpc_system_program_1(char *host)
 		exit(1);
 	}
 #endif	
+
 #ifndef	DEBUG
 	clnt_destroy (clnt);
 #endif	 /* DEBUG */
@@ -45,7 +46,7 @@ int main (int argc, char *argv[])
 	}
 	printf("Num args: %d\n", argc);
 
-	rpc_system_program_1 (host);
+	//rpc_system_program_1 (host);
 	printf("Check 1");
 
 	CLIENT *clnt = clnt_create(host, RPC_SYSTEM_PROGRAM, RPC_SYSTEM_VERS, "udp");
@@ -101,5 +102,6 @@ int main (int argc, char *argv[])
 
 	printf("Current list: ");
 	
+	clnt_destroy (clnt);
 	exit (0);
 }
