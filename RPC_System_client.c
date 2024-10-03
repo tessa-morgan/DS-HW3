@@ -57,11 +57,11 @@ int main (int argc, char *argv[])
 		exit(1);
 	}
 	printf("Num args: %d\n", argc);
+
 	host = argv[1];
-	printf("Host: %s \n", argv[1]);
+	printf("Check 1");
 
 	rpc_system_program_1 (host);
-	printf("Check 1");
 
 	CLIENT *clnt = clnt_create(host, RPC_SYSTEM_PROGRAM, RPC_SYSTEM_VERS, "udp");
 	remove_1(0, clnt);
