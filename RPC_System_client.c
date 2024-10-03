@@ -7,9 +7,23 @@
 #include "RPC_System.h"
 
 
-void
-rpc_system_program_1(char *host, char* type)
+int main (int argc, char *argv[])
 {
+	char *host;
+
+	if (argc < 2) {
+		printf("usage: %s server_host\n", argv[0]);
+		exit (1);
+	}
+	host = argv[1];
+	if (argc < 3) {
+		printf("Too few arguments");
+		exit(1);
+	}
+
+	host = argv[1];
+	char* type = argv[2];
+
 	CLIENT *clnt;
 	void  *result_1;
 	ordered  append_1_arg;
@@ -49,15 +63,19 @@ rpc_system_program_1(char *host, char* type)
 		append_1(&list, clnt);
 	}
 	else if (req == 'q' || req == 'Q') {
-		printf("Enter the index to query: \n");
-		int index;
-		scanf("%d", &index);
+		if (argc < 4) {
+			printf("Not enought arguments");
+			exit(1);
+		}
+		int index = argv[3];
 		printf("Index %d: %d\n", index, *query_1(&index, clnt));
 	}
 	else if (req == 'r' || req == 'r'){
-		printf("Enter the index to remove: \n");
-		int index;
-		scanf("%d", &index);
+		if (argc < 4) {
+			printf("Not enought arguments");
+			exit(1);
+		}
+		int index = argv[3];
 		remove_1(&index, clnt);
 	}
 
@@ -65,24 +83,6 @@ rpc_system_program_1(char *host, char* type)
 #ifndef	DEBUG
 	clnt_destroy (clnt);
 #endif	 /* DEBUG */
-}
-
-
-int main (int argc, char *argv[])
-{
-	char *host;
-
-	if (argc < 2) {
-		printf("usage: %s server_host\n", argv[0]);
-		exit (1);
-	}
-	host = argv[1];
-	if (argc < 3) {
-		printf("Too few arguments");
-		exit(1);
-	}
-
-	rpc_system_program_1 (host, argv[2]);
 	
 	exit (0);
 }
