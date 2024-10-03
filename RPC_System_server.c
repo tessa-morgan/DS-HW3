@@ -50,7 +50,7 @@ int * query_1_svc(int *argp, struct svc_req *rqstp)
 
 	// If the index to query is out of range, return -1
 	result = -1;
-	if (i < list.ordered_len && i > 0) {
+	if (i < list.ordered_len && i >= 0) {
 		result = list.ordered_val[i];
 	}
 
