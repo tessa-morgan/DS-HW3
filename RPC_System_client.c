@@ -61,6 +61,7 @@ rpc_system_program_1(char *host, char* type)
 		remove_1(&index, clnt);
 	}
 
+
 #ifndef	DEBUG
 	clnt_destroy (clnt);
 #endif	 /* DEBUG */

@@ -14,11 +14,13 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 	int i=0, j=0;
 	list.ordered_len += 8;
 
+	// First time numbers are appended, list is empty
 	if (list.ordered_len == 8) {
 		list.ordered_val = malloc(((argp->ordered_len * sizeof(int)) + 1));
 		list = *argp;
 	}
 	else {
+		//
 		list.ordered_val = realloc(list.ordered_val, ((list.ordered_len * sizeof(int)) + 1));
 	
 		//find the end of list
@@ -26,7 +28,7 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 			i++;
 		}
 
-		//append s to d
+		//append new values
 		while((argp->ordered_len + j)!='\0'){
 			*(list.ordered_val+i) = *(argp->ordered_val+j);
 			i++;
@@ -55,7 +57,6 @@ void * remove_1_svc(int *argp, struct svc_req *rqstp)
 {
 	static char * result;
 
-	printf("remove recieved for index %d", *argp);
 	list.ordered_len -= 1;
 
 	return (void *) &result;
