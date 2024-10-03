@@ -29,11 +29,11 @@ rpc_system_program_1(char *host, char* type)
 	char req = type[0];
 
 	if (req == 'a' || req == 'A'){
-		printf("Enter 8 elements\n");
+		printf("Enter elements\n");
 		int input[8];
 		
 		for (int i = 0; i < 8; i++) {
-			scanf("%d", &input[i]);
+			scanf("%d", input[i]);
 		}
 
 		for (int i = 0; i < 8; i++) {
