@@ -57,9 +57,8 @@ int main (int argc, char *argv[])
 		exit(1);
 	}
 	printf("Num args: %d\n", argc);
-	printf("%s \n", argv[1]);
 	host = argv[1];
-	printf("Host: %s \n", host);
+	printf("Host: %s \n", argv[1]);
 
 	rpc_system_program_1 (host);
 	printf("Check 1");
