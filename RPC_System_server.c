@@ -13,11 +13,13 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 	static char * result;
 	int i=0, j=0;
 	list.ordered_len += 8;
+	int first = 1;
 
 	// First time numbers are appended, list is empty
-	if (list.ordered_len == 8) {
+	if (list.ordered_len == 8 && first) {
 		list.ordered_val = malloc(((argp->ordered_len * sizeof(int))));
 		list = *argp;
+		first = 0;
 	}
 	else {
 		//
@@ -56,8 +58,13 @@ int * query_1_svc(int *argp, struct svc_req *rqstp)
 void * remove_1_svc(int *argp, struct svc_req *rqstp)
 {
 	static char * result;
+	int rem = *argp;
 
 	list.ordered_len -= 1;
+
+	for (int i = rem; i < list.ordered_len; i++) {
+		list.ordered_val[i] = list.ordered_val[i+1];
+	}
 
 	return (void *) &result;
 }
