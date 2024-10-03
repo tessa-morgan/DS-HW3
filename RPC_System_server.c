@@ -20,10 +20,13 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 
 	// First time numbers are appended, list is empty
 	if (list.ordered_len == 8 && first) {
-		// Make the initial memory allocation
-		list.ordered_val = malloc(((argp->ordered_len * sizeof(int))));
-		list = *argp;
 		first = 0;
+		// Make the initial memory allocation
+		list.ordered_val = malloc(argp->ordered_len * sizeof(int));
+		
+		for (int i = 0; i < argp->ordered_len; i++) {
+			list.ordered_val[i] = argp->ordered_val[i];
+		}
 	}
 	else {
 		// Reallocate memory for the ordered list 
