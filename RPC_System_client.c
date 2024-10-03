@@ -41,7 +41,7 @@ rpc_system_program_1(char *host)
 		list.ordered_len = 8;
 		list.ordered_val = input;
 
-		append_1(&list, clnt);
+		//append_1(&list, clnt);
 	}
 	else if (req == 'q' || req == 'Q') {
 		printf("Enter the index to query: \n");
