@@ -16,12 +16,17 @@ int main (int argc, char *argv[])
 		exit (1);
 	}
 	host = argv[1];
+
+	// Check to make sure the query type is given
 	if (argc < 3) {
 		printf("Too few arguments");
 		exit(1);
 	}
 
+	// Assign host
 	host = argv[1];
+
+	// Get the third argument and save it for the type of query
 	char* type = argv[2];
 
 	CLIENT *clnt;
@@ -40,38 +45,54 @@ int main (int argc, char *argv[])
 	}
 #endif	/* DEBUG */
 
+	// Get and use the first character from the type
 	char req = type[0];
 
+	// Append
 	if (req == 'a' || req == 'A'){
+		// The number of arguments passed on the command line
+		// Can pass one or more to append
 		int num = argc - 3;
 		int input[num];
 		
+		// Get the arguments from the command line to an input array
 		for (int i = 0; i < num; i++) {
 			input[i] = atoi(argv[i + 3]);
 		}
 
-		// Add elements to new ordered list
+		// Make a new Ordered type to pass to the server
 		ordered list;
 		list.ordered_len = num;
 		list.ordered_val = input;
 
+		// Call the append
 		append_1(&list, clnt);
 	}
+
+	// Query
 	else if (req == 'q' || req == 'Q') {
+		// Check to make sure the index is provided
 		if (argc < 4) {
 			printf("Not enought arguments");
 			exit(1);
 		}
 
+		// Get the index
 		int index = atoi(argv[3]);
+
+		// Query the server and print
 		printf("Index %d: %d\n", index, *query_1(&index, clnt));
 	}
+
+	// Remove
 	else if (req == 'r' || req == 'r'){
+		// Check to make sure the index is provided
 		if (argc < 4) {
 			printf("Not enought arguments");
 			exit(1);
 		}
 
+		// Get the index
 		int index = atoi(argv[3]);
 		remove_1(&index, clnt);
 	}

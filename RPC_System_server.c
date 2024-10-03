@@ -11,22 +11,28 @@ ordered list;
 void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 {
 	static char * result;
-	int i=0, j=0;
+
+	// Gets the size of the input so that any number of elements can be added
 	list.ordered_len += argp->ordered_len;
+
+	// Used to make sure the if part of the if-else is only executed the first time
 	int first = 1;
 
 	// First time numbers are appended, list is empty
 	if (list.ordered_len == 8 && first) {
+		// Make the initial memory allocation
 		list.ordered_val = malloc(((argp->ordered_len * sizeof(int))));
 		list = *argp;
 		first = 0;
 	}
 	else {
-		//
+		// Reallocate memory for the ordered list 
 		list.ordered_val = realloc(list.ordered_val, ((list.ordered_len * sizeof(int)) + 1));
 	
+		// The last index of the ordered list before anything is added
 		int end = list.ordered_len - argp->ordered_len;
 		
+		// Add the elements
 		for (int i = 0; i < argp->ordered_len; i++) {
 			list.ordered_val[i+end] = argp->ordered_val[i];
 		}
@@ -38,10 +44,13 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 int * query_1_svc(int *argp, struct svc_req *rqstp)
 {
 	static int  result;
+
+	// Save the data from the input pointer
 	int i = *argp;
 
+	// If the index to query is out of range, return -1
 	result = -1;
-	if (i < list.ordered_len) {
+	if (i < list.ordered_len && i > 0) {
 		result = list.ordered_val[i];
 	}
 
@@ -51,10 +60,14 @@ int * query_1_svc(int *argp, struct svc_req *rqstp)
 void * remove_1_svc(int *argp, struct svc_req *rqstp)
 {
 	static char * result;
+
+	// Save the index to be removed from the input pointer
 	int rem = *argp;
 
+	// Decrease size of the ordered array
 	list.ordered_len -= 1;
 
+	// Move all the elements as needed
 	for (int i = rem; i < list.ordered_len; i++) {
 		list.ordered_val[i] = list.ordered_val[i+1];
 	}
