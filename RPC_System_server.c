@@ -7,7 +7,6 @@
 #include "RPC_System.h"
 
 ordered list;
-list->ordered_len = 0;
 
 void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 {
