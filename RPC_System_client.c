@@ -24,7 +24,37 @@ rpc_system_program_1(char *host)
 		clnt_pcreateerror (host);
 		exit(1);
 	}
-#endif	
+#endif	/* DEBUG */
+
+	char req;
+	printf("Enter request type: ");
+	scanf("%c", &req);
+
+	if (req == 'a' || req == 'A'){
+		printf("Enter 8 elements\n");
+		int input[8];
+		
+		scanf("%d %d %d %d %d %d %d %d", input[0], input[1], input[2], input[3], input[4], input[5], input[6], input[7]);
+
+		// Add elements to new ordered list
+		ordered list;
+		list.ordered_len = 8;
+		list.ordered_val = input;
+
+		append_1(&list, clnt);
+	}
+	else if (req == 'q' || req == 'Q') {
+		printf("Enter the index to query: \n");
+		int index;
+		scanf("%d", &index);
+		query_1(&index, clnt);
+	}
+	else if (req == 'r' || req == 'r'){
+		printf("Enter the index to remove: \n");
+		int index;
+		scanf("%d", &index);
+		remove_1(&index, clnt);
+	}
 
 #ifndef	DEBUG
 	clnt_destroy (clnt);
@@ -40,68 +70,8 @@ int main (int argc, char *argv[])
 		printf("usage: %s server_host\n", argv[0]);
 		exit (1);
 	}
-	if (argc < 3) {
-		printf("No request type provided");
-		exit(1);
-	}
-	printf("Num args: %d\n", argc);
 
-	//rpc_system_program_1 (host);
-	printf("Check 1");
-
-	CLIENT *clnt = clnt_create(host, RPC_SYSTEM_PROGRAM, RPC_SYSTEM_VERS, "udp");
-	remove_1(0, clnt);
-
-	char req = *argv[2];
-
-	printf("Check 2");
-
-	if (req == 'a' || req == 'A'){
-		if (argc < 11) {
-			printf("Append: too few arguments");
-			exit(1);
-		}
-		printf("Adding 8 elements\n");
-		int input[8];
-		
-		for (int i = 0; i < 8; i++) {
-			input[i] = atoi(argv[i+3]);
-		}
-
-		// Add elements to new ordered list
-		ordered list;
-		list.ordered_len = 8;
-		list.ordered_val = input;
-
-		append_1(&list, clnt);
-	}
-	else if (req == 'q' || req == 'Q') {
-		if (argc < 4) {
-			printf("Query: too few arguments");
-		}
-		if (argc > 11) {
-			printf("Query: %d remaining unused arguments\n", (argc - 4));
-		}
-		int index = atoi(argv[3]);
-
-		printf("Query at element %s\n", argv[3]);
-		query_1(&index, clnt);
-	}
-	else if (req == 'r' || req == 'r'){
-		if (argc < 4) {
-			printf("Remove: too few arguments");
-		}
-		if (argc > 11) {
-			printf("Remove: %d remaining unused arguments\n", (argc - 4));
-		}
-		int index = atoi(argv[3]);
-
-		printf("Removing element %s\n", argv[3]);
-		remove_1(&index, clnt);
-	}
-
-	printf("Current list: ");
+	rpc_system_program_1 (host);
 	
-	clnt_destroy (clnt);
 	exit (0);
 }
