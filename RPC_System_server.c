@@ -6,8 +6,7 @@
 
 #include "RPC_System.h"
 
-void *
-append_1_svc(ordered *argp, struct svc_req *rqstp)
+void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 {
 	static char * result;
 
@@ -16,8 +15,7 @@ append_1_svc(ordered *argp, struct svc_req *rqstp)
 	return (void *) &result;
 }
 
-int *
-query_1_svc(int *argp, struct svc_req *rqstp)
+int * query_1_svc(int *argp, struct svc_req *rqstp)
 {
 	static int  result;
 
@@ -26,8 +24,7 @@ query_1_svc(int *argp, struct svc_req *rqstp)
 	return &result;
 }
 
-void *
-remove_1_svc(int *argp, struct svc_req *rqstp)
+void * remove_1_svc(int *argp, struct svc_req *rqstp)
 {
 	static char * result;
 

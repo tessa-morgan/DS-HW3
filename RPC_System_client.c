@@ -22,7 +22,7 @@ rpc_system_program_1(char *host)
 	clnt = clnt_create (host, RPC_SYSTEM_PROGRAM, RPC_SYSTEM_VERS, "udp");
 	if (clnt == NULL) {
 		clnt_pcreateerror (host);
-		exit (1);
+		exit(1);
 	}
 #endif	/* DEBUG */
 
@@ -46,10 +46,10 @@ rpc_system_program_1(char *host)
 
 int main (int argc, char *argv[])
 {
-	char *host;
+	char *host = 'localhost';
 
 	if (argc < 2) {
-		printf ("usage: %s server_host\n", argv[0]);
+		printf("usage: %s server_host\n", argv[0]);
 		exit (1);
 	}
 	if (argc < 3) {
@@ -57,9 +57,6 @@ int main (int argc, char *argv[])
 		exit(1);
 	}
 	printf("Num args: %d\n", argc);
-
-	host = argv[1];
-	printf("Check 1");
 
 	rpc_system_program_1 (host);
 
