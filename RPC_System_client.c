@@ -68,7 +68,7 @@ int main (int argc, char *argv[])
 			exit(1);
 		}
 
-		int index = &argv[3];
+		int index = atoi(*argv[3]);
 		printf("Index %d: %d\n", index, *query_1(&index, clnt));
 	}
 	else if (req == 'r' || req == 'r'){
@@ -77,7 +77,7 @@ int main (int argc, char *argv[])
 			exit(1);
 		}
 
-		int index = argv[3];
+		int index = atoi(*argv[3]);
 		remove_1(&index, clnt);
 	}
 
