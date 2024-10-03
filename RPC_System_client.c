@@ -62,9 +62,14 @@ int main (int argc, char *argv[])
 	host = argv[1];
 	rpc_system_program_1 (host);
 
+	printf("Check 1");
+
 	CLIENT *clnt = clnt_create(host, RPC_SYSTEM_PROGRAM, RPC_SYSTEM_VERS, "udp");
+	remove_1(0, clnt);
 
 	char req = *argv[2];
+
+	printf("Check 2");
 
 	if (req == 'a' || req == 'A'){
 		if (argc < 11) {
