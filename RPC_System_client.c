@@ -46,7 +46,7 @@ rpc_system_program_1(char *host)
 
 int main (int argc, char *argv[])
 {
-	char *host = 'localhost';
+	char *host = "localhost";
 
 	if (argc < 2) {
 		printf("usage: %s server_host\n", argv[0]);
