@@ -52,7 +52,7 @@ rpc_system_program_1(char *host, char* type)
 		printf("Enter the index to query: \n");
 		int index;
 		scanf("%d", &index);
-		query_1(&index, clnt);
+		printf("Index %d: %d", index, query_1(&index, clnt));
 	}
 	else if (req == 'r' || req == 'r'){
 		printf("Enter the index to remove: \n");

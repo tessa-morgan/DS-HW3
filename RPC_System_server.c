@@ -41,8 +41,12 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 int * query_1_svc(int *argp, struct svc_req *rqstp)
 {
 	static int  result;
+	int i = *argp;
 
-	result = list.ordered_val[*argp];
+	result = -1;
+	if (i < list.ordered_len) {
+		result = list.ordered_val[i];
+	}
 
 	return &result;
 }
