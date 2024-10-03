@@ -12,7 +12,7 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 {
 	static char * result;
 	int i=0, j=0;
-	list.ordered_len += 8;
+	list.ordered_len += argp->ordered_len;
 	int first = 1;
 
 	// First time numbers are appended, list is empty
@@ -25,18 +25,11 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 		//
 		list.ordered_val = realloc(list.ordered_val, ((list.ordered_len * sizeof(int)) + 1));
 	
-		//find the end of list
-		while(*(list.ordered_val+i)!='\0'){
-			i++;
+		int end = list.ordered_len - argp->ordered_len;
+		
+		for (int i = 0; i < argp->ordered_len; i++) {
+			list.ordered_val[i+end] = argp->ordered_val[i];
 		}
-
-		//append new values
-		while((argp->ordered_len + j)!='\0'){
-			*(list.ordered_val+i) = *(argp->ordered_val+j);
-			i++;
-			j++;
-		}
-		*(list.ordered_val+i)='\0';
 	}
 
 	return (void *) &result;

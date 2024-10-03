@@ -50,14 +50,9 @@ int main (int argc, char *argv[])
 			input[i] = atoi(argv[i + 3]);
 		}
 
-		for (int i = 0; i < 8; i++) {
-			printf("%d,", input[i]);
-		}
-		printf("\n");
-
 		// Add elements to new ordered list
 		ordered list;
-		list.ordered_len = 8;
+		list.ordered_len = num;
 		list.ordered_val = input;
 
 		append_1(&list, clnt);
