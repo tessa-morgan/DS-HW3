@@ -57,7 +57,7 @@ int main (int argc, char *argv[])
 		exit(1);
 	}
 	printf("Num args: %d\n", argc);
-
+	printf("%s \n", argv[1]);
 	host = argv[1];
 	printf("Host: %s \n", host);
 
