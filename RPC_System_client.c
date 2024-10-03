@@ -24,20 +24,7 @@ rpc_system_program_1(char *host)
 		clnt_pcreateerror (host);
 		exit(1);
 	}
-#endif	/* DEBUG */
-
-	result_1 = append_1(&append_1_arg, clnt);
-	if (result_1 == (void *) NULL) {
-		clnt_perror (clnt, "call failed");
-	}
-	result_2 = query_1(&query_1_arg, clnt);
-	if (result_2 == (int *) NULL) {
-		clnt_perror (clnt, "call failed");
-	}
-	result_3 = remove_1(&remove_1_arg, clnt);
-	if (result_3 == (void *) NULL) {
-		clnt_perror (clnt, "call failed");
-	}
+#endif	
 #ifndef	DEBUG
 	clnt_destroy (clnt);
 #endif	 /* DEBUG */
