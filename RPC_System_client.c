@@ -37,11 +37,11 @@ rpc_system_program_1(char *host)
 		scanf("%d %d %d %d %d %d %d %d", input[0], input[1], input[2], input[3], input[4], input[5], input[6], input[7]);
 
 		// Add elements to new ordered list
-		//ordered list;
-		//list.ordered_len = 8;
+		ordered list;
+		list.ordered_len = 8;
 		//list.ordered_val = input;
 
-		append_1(&input, clnt);
+		append_1(&list, clnt);
 	}
 	else if (req == 'q' || req == 'Q') {
 		printf("Enter the index to query: \n");
