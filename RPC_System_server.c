@@ -42,9 +42,7 @@ int * query_1_svc(int *argp, struct svc_req *rqstp)
 {
 	static int  result;
 
-	printf("query recieved for index %d", *argp);
-
-	
+	result = list.ordered_val[*argp];
 
 	return &result;
 }
