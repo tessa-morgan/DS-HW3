@@ -43,11 +43,11 @@ int main (int argc, char *argv[])
 	char req = type[0];
 
 	if (req == 'a' || req == 'A'){
-		printf("Enter elements\n");
-		int input[8];
+		int num = argc - 3;
+		int input[num];
 		
-		for (int i = 0; i < 8; i++) {
-			scanf("%d", &input[i]);
+		for (int i = 0; i < num; i++) {
+			input[i] = atoi(argv[i + 3]);
 		}
 
 		for (int i = 0; i < 8; i++) {
