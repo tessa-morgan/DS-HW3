@@ -45,7 +45,7 @@ rpc_system_program_1(char *host)
 
 		// Add elements to new ordered list
 		ordered list;
-		//list.ordered_len = 8;
+		list.ordered_len = 8;
 		list.ordered_val = input;
 
 		append_1(&list, clnt);

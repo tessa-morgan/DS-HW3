@@ -6,11 +6,28 @@
 
 #include "RPC_System.h"
 
+ordered list;
+
 void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 {
 	static char * result;
+	int i=0, j=0;
 
-	printf("Append recieved");
+	list.ordered_val = realloc(list.ordered_val, 
+						((list.ordered_len*sizeof(int)) + (argp.ordered_val*sizeof(int)) + 1));
+	
+	//find the end of list
+	while(*(list.ordered_val+i)!='\0'){
+		i++;
+	}
+
+	//append s to d
+	while(*(argp.ordered_len + j)!='\0'){
+		*(list.ordered_val+i) = *(argp+j);
+		i++;
+		j++;
+	}
+	*(list.ordered_val+i)='\0';
 
 	return (void *) &result;
 }
@@ -21,6 +38,8 @@ int * query_1_svc(int *argp, struct svc_req *rqstp)
 
 	printf("query recieved for index %d", *argp);
 
+	
+
 	return &result;
 }
 
@@ -29,6 +48,7 @@ void * remove_1_svc(int *argp, struct svc_req *rqstp)
 	static char * result;
 
 	printf("remove recieved for index %d", *argp);
+	list.ordered_len -= 1;
 
 	return (void *) &result;
 }
