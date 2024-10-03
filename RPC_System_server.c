@@ -14,7 +14,7 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 	int i=0, j=0;
 	list.ordered_len += 8;
 
-	if (list.ordered_len == 0) {
+	if (list.ordered_len == 8) {
 		list.ordered_val = malloc(((argp->ordered_len * sizeof(int)) + 1));
 	}
 	else {
