@@ -14,7 +14,7 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 	int i=0, j=0;
 
 	list.ordered_val = realloc(list.ordered_val, 
-						((list.ordered_len * sizeof(int)) + (argp->ordered_val * sizeof(int)) + 1));
+						((list.ordered_len * sizeof(int)) + (argp->ordered_len * sizeof(int)) + 1));
 	
 	//find the end of list
 	while(*(list.ordered_val+i)!='\0'){
