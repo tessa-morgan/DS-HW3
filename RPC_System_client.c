@@ -36,10 +36,15 @@ rpc_system_program_1(char *host)
 		
 		scanf("%d %d %d %d %d %d %d %d", input[0], input[1], input[2], input[3], input[4], input[5], input[6], input[7]);
 
+		for (int i = 0; i < 8; i++) {
+			printf("%d,", input[i]);
+		}
+		printf("\n");
+
 		// Add elements to new ordered list
 		ordered list;
-		list.ordered_len = 8;
-		//list.ordered_val = input;
+		//list.ordered_len = 8;
+		list.ordered_val = input;
 
 		append_1(&list, clnt);
 	}
