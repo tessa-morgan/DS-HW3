@@ -52,6 +52,9 @@ int main (int argc, char *argv[])
 		printf ("usage: %s server_host\n", argv[0]);
 		exit (1);
 	}
+
+	printf("Num args: %d\n", argc);
+
 	if (argc < 3) {
 		printf("No request type provided");
 		exit(1);
@@ -67,9 +70,6 @@ int main (int argc, char *argv[])
 		if (argc < 11) {
 			printf("Append: too few arguments");
 			exit(1);
-		}
-		if (argc > 11) {
-			printf("Append: %d remaining unused arguments\n", (argc - 11));
 		}
 		printf("Adding 8 elements\n");
 		int input[8];
