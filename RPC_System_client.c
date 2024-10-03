@@ -56,12 +56,12 @@ int main (int argc, char *argv[])
 		printf("No request type provided");
 		exit(1);
 	}
-
 	printf("Num args: %d\n", argc);
 
 	host = argv[1];
-	rpc_system_program_1 (host);
+	printf("Host: %s \n", host);
 
+	rpc_system_program_1 (host);
 	printf("Check 1");
 
 	CLIENT *clnt = clnt_create(host, RPC_SYSTEM_PROGRAM, RPC_SYSTEM_VERS, "udp");
