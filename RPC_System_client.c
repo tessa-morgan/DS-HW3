@@ -8,7 +8,7 @@
 
 
 void
-rpc_system_program_1(char *host)
+rpc_system_program_1(char *host, char* type)
 {
 	CLIENT *clnt;
 	void  *result_1;
@@ -26,9 +26,7 @@ rpc_system_program_1(char *host)
 	}
 #endif	/* DEBUG */
 
-	char req;
-	printf("Enter request type: ");
-	scanf("%c", &req);
+	char req = type[0];
 
 	if (req == 'a' || req == 'A'){
 		printf("Enter 8 elements\n");
@@ -71,14 +69,19 @@ rpc_system_program_1(char *host)
 
 int main (int argc, char *argv[])
 {
-	char *host = "localhost";
+	char *host;
 
 	if (argc < 2) {
 		printf("usage: %s server_host\n", argv[0]);
 		exit (1);
 	}
+	host = argv[1];
+	if (argc < 3) {
+		printf("Too few arguments");
+		exit(1);
+	}
 
-	rpc_system_program_1 (host);
+	rpc_system_program_1 (host, argv[2]);
 	
 	exit (0);
 }
