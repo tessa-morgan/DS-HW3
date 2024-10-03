@@ -16,23 +16,24 @@ void *append_1_svc(ordered *argp, struct svc_req *rqstp)
 
 	if (list.ordered_len == 8) {
 		list.ordered_val = malloc(((argp->ordered_len * sizeof(int)) + 1));
+		list = *argp;
 	}
 	else {
 		list.ordered_val = realloc(list.ordered_val, ((list.ordered_len * sizeof(int)) + 1));
-	}
 	
-	//find the end of list
-	while(*(list.ordered_val+i)!='\0'){
-		i++;
-	}
+		//find the end of list
+		while(*(list.ordered_val+i)!='\0'){
+			i++;
+		}
 
-	//append s to d
-	while((argp->ordered_len + j)!='\0'){
-		*(list.ordered_val+i) = *(argp->ordered_val+j);
-		i++;
-		j++;
+		//append s to d
+		while((argp->ordered_len + j)!='\0'){
+			*(list.ordered_val+i) = *(argp->ordered_val+j);
+			i++;
+			j++;
+		}
+		*(list.ordered_val+i)='\0';
 	}
-	*(list.ordered_val+i)='\0';
 
 	return (void *) &result;
 }
